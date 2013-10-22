@@ -1,5 +1,3 @@
-require 'find'
-
 class PrependFiledateToFilename
   def format(date)
     date.strftime('%Y%m%d')
@@ -7,14 +5,14 @@ class PrependFiledateToFilename
 
 
   def apply_to_all(start_dir)
-    Dir.foreach(start_dir) do |fname|
-      input_file = File.new("#{start_dir}/#{fname}")
-      next if File.directory?fname
-      new_filename = "#{format(File.mtime(input_file))}_#{fname}"
+    Dir.glob(start_dir + '/*') do |file|
+      date_portion = format(File.mtime(file))
 
-      puts " rename #{fname} => #{new_filename}"
+      new_filename = "#{date_portion}_#{File.basename(file)}"
 
-      File.rename(input_file, "#{start_dir}/#{new_filename}")
+      puts " rename #{file} => #{new_filename}"
+
+      File.rename(file, "#{start_dir}/#{new_filename}")
     end
   end
 end
