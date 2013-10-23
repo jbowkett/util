@@ -1,3 +1,4 @@
+require 'pathname'
 class PrependFiledateToFilename
   def format(date)
     date.strftime('%Y%m%d')
@@ -5,10 +6,10 @@ class PrependFiledateToFilename
 
 
   def apply_to_all(start_dir)
-    Dir.glob(start_dir + '/*') do |file|
-      date_portion = format(File.mtime(file))
+    Pathname.glob(start_dir + '/*') do |file|
+      date_portion = format(file.mtime)
 
-      new_filename = "#{date_portion}_#{File.basename(file)}"
+      new_filename = "#{date_portion}_#{file.basename}"
 
       puts " rename #{file} => #{new_filename}"
 
