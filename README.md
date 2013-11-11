@@ -1,4 +1,4 @@
 util
 ====
 
-Utility scripts
+Utility scripts of differing language flavours.
