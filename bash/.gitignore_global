@@ -1,0 +1,10 @@
+scratch.txt
+*.iml
+*.iws
+*.ipr
+target
+\.DS_Store
+\.idea
+\build
+\gradle
+\.gradle
