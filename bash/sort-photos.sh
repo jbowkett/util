@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 usage (){
   printf "\n\n usage : sort-photos.sh <path to src files> <path to destination files>\n\n"
 
@@ -11,21 +13,20 @@ if [ "$#" -ne 2 ]; then
 fi
 
 
-src=$1
+src="$1"/*
 dest=$2
-
 for file in $src
 do
-
-  if [ -f "$file" ]
+  if [ -f "$file" ] 
     then
     echo "processing file $file"
-    year=`date -r ${file} "+%Y"`
-    month=`date -r ${file} "+%b"`
+    filename=$(basename "$file")
+    year=`date -r "${file}" "+%Y"`
+    month=`date -r "${file}" "+%b"`
     dest_path="${dest}/${year}/${month}/"
-    echo "making path ${dest_path}..."
-    mkdir -p ${dest_path} 
-    mv_cmd="mv ${file} ${dest}/${year}/${month}/"
+    #echo "making path ${dest_path}..."
+    `mkdir -p ${dest_path} `
+    mv_cmd="mv ${file} ${dest}/${year}/${month}/${filename}"
     `${mv_cmd}`
   fi
 
