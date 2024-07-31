@@ -26,7 +26,7 @@ do
     dest_path="${dest}/${year}/${month}/"
     #echo "making path ${dest_path}..."
     `mkdir -p ${dest_path} `
-    mv_cmd="mv ${file} ${dest}/${year}/${month}/${filename}"
+    mv_cmd="mv -n ${file} ${dest}/${year}/${month}/${filename}"
     `${mv_cmd}`
   fi
 
