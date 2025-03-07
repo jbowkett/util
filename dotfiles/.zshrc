@@ -45,7 +45,7 @@ alias skiptests="mvn -DskipTests clean install"
 # alias tags_in_order="git tag --sort=-creatordate |head -10"
 alias all_tags_in_order="git for-each-ref --sort=taggerdate --shell --format=\"%(taggerdate:format:%d-%m-%Y %H:%m) %(refname:short)\" refs/tags/*"
 
-export from=`git tag --sort=-creatordate |head -1`
+#export from=`git tag --sort=-creatordate |head -1`
 export to=.
 alias release-note="git log --format=%s $(echo \$from)..$(echo \$to) | sort -f | uniq -i | grep -v Merge"
 
