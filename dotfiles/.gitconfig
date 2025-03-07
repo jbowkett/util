@@ -1,0 +1,76 @@
+[user]
+	name = jbowkett
+	email = james@bowkett.email
+
+[credential]
+	helper = osxkeychain
+
+[color]
+	ui = auto
+
+[color "branch"]
+        current = yellow bold
+        local   = green bold
+        remote  = cyan bold
+
+[color "diff"]
+        meta    = yellow bold
+       frag    = magenta bold
+        old     = red
+        new     = green
+        whitespace = red reverse
+
+[color "status"]
+        added   = green
+        changed = yellow
+        untracked = red
+
+[alias]
+	co = checkout
+	ci = commit
+	br = branch
+	wc = whatchanged
+  # dc = diff --cached
+  wd = diff --word-diff=color
+  lg = log --oneline --decorate --graph
+  lga = log --oneline --decorate --graph --all
+  # st = status -sb
+
+   st      = status
+        # alias   = config --get-regexp alias
+   alias = "!git config -l | grep alias | cut -c 7- | sort"
+   up      = !git fetch && git pull
+   br      = branch
+   co      = checkout
+    last    = log -1 --decorate --stat --abbrev-commit --oneline
+    a = add -v
+    aa = add -A -v .
+    c = commit -v
+    d = diff
+    dc = diff --staged
+    dg = !sh -c 'git diff $(git status-grep $1)' -
+    dw = diff --color-words
+    desc = describe
+    l = log    --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+
+    l5 = !git --no-pager log -5 --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
+    lsince = !git --no-pager log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso $( git tag --sort=-creatordate |head -1)..HEAD
+    r = reset
+    r1 = reset HEAD^
+    r2 = reset HEAD^^
+    rh = reset --hard
+    rh1 = reset HEAD^ --hard
+    rh2 = reset HEAD^^ --hard
+    s = status -s
+    st = status
+    unstage = reset HEAD --
+    wc = whatchanged
+
+[core]
+	excludesfile = /Users/jbowkett/.gitignore_global
+	autocrlf = input
+	editor = vim
+[push]
+	default = simple
