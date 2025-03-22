@@ -9,7 +9,7 @@
     <array>
         <string>/bin/bash</string>
         <string>-c</string>
-        <string>find /Users/jamesbowkett/Downloads/* -type f -mtime +7 -exec rm -rf {} \;</string>
+        <string>find /Users/jamesbowkett/Downloads -mindepth 1 -mtime +7 -exec rm -rf {} +</string>
     </array>
 
     <key>StartCalendarInterval</key>
