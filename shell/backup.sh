@@ -8,7 +8,7 @@ if [ $# -lt 3 ]; then
     echo usage: $0 restic-repo-passwd b2-account-key b2-account-id 
     exit 1
 fi
-
+export RESTIC_CACHE_DIR=/mnt/md0/nas/backup/.cache/restic
 export TMPDIR="/mnt/md0/nas/backup/tmp/"
 export RESTIC_PASSWORD=$1
 export B2_ACCOUNT_KEY=$2
@@ -45,7 +45,7 @@ function do_backup(){
 	export src_dir=$3
 	export log_path=/mnt/md0/nas/backup/logs/$log_file
 	log_start $log_path $bucket
-	/opt/restic -r b2:$bucket backup $src_dir >> $log_path 2>&1
+	/opt/restic --cache-dir ${RESTIC_CACHE_DIR}  -r b2:$bucket backup $src_dir >> $log_path 2>&1
 	log_finish $log_path 
 }
 
